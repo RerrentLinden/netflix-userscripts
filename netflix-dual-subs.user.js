@@ -2,7 +2,7 @@
 // @name         Netflix Dual Subtitles
 // @name:zh-CN   Netflix 双语字幕
 // @namespace    https://github.com/RerrentLinden/netflix-userscripts
-// @version      2.0.1
+// @version      2.0.2
 // @description  Show two subtitle languages at once on Netflix, with a small settings panel for languages and style.
 // @description:zh-CN 在 Netflix 播放页同时显示两种语言的字幕，可在面板里选择语言、调整样式。
 // @match        https://www.netflix.com/*
@@ -46,7 +46,8 @@
   };
 
   const CSS = `
-    .nds-root { position: absolute; inset: 0; pointer-events: none; container-type: size; }
+    /* z-index：切到下一集时 Netflix 会在本层后面插入新的视频容器，不抬高就会被它盖住 */
+    .nds-root { position: absolute; inset: 0; z-index: 1; pointer-events: none; container-type: size; }
     .nds-subs {
       position: absolute; left: 0; right: 0; bottom: var(--nds-bottom);
       display: flex; flex-direction: column; align-items: center; gap: 0.4cqh;
